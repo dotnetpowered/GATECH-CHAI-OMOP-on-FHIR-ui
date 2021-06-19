@@ -1,0 +1,39 @@
+<div class="p-grid">
+    <div class="p-col-3">
+        <img src="/assets/gt-logo-black.png" style="width: 10rem;">
+        <h2 style="margin: 0px;">OMOP on FHIR</h2>
+    </div>
+    <div class="p-col-9">
+        <p-card header="OMOP on FHIR Server v{{settings?.OmopOnFhir_Version}}">
+            <span><strong>{{settings?.OmopOnFhir_Edition}}</strong> {{settings?.OmopOnFhir_Credits}}</span>
+            <ul>
+                <li>FHIR Version: {{settings?.FhirVersion}}</li>
+                <li>OMOP Version: {{settings?.OmopVersion}}</li>
+                <li>Database Provider: {{settings?.DatabaseProvider}}</li>
+                <li>Key Provider: {{settings?.KeyProvider}}</li>
+            </ul>
+            <p>FHIR Endpoint: <a href="{{settings?.FhirEndpoint}}">{{settings?.FhirEndpoint}}</a> | <a href="/swagger">Swagger Docs</a></p>
+        </p-card>
+        <br>
+        <p-card header="Resources">
+            <p-table [value]="resources">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Name</th>
+                        <th>Count</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-resource>
+                    <tr>
+                        <td>
+                            <a [routerLink]="['/resource', {name: resource.resourceName}]">{{resource.resourceName}}</a>
+                        </td>
+                        <td>
+                            <p-chip label="{{resource.count}}"></p-chip>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </p-card>
+    </div>
+</div>

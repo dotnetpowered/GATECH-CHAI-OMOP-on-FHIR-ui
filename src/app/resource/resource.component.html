@@ -1,0 +1,61 @@
+<div class="p-grid">
+    <div class="p-col-3">
+        <img src="/assets/gt-logo-black.png" style="width: 10rem;">
+        <h2 style="margin: 0px;">OMOP on FHIR</h2>
+        <ul>
+            <li><a href="/">Dashboard</a></li>
+        </ul>
+
+    </div>
+    <div class="p-col-9">
+        <h2>{{resourceName}}</h2>
+
+
+        <p-tabView>
+            <p-tabPanel header="FHIR to OMOP Mapping">
+                <div *ngFor="let entityMapping of resourceMap?.entities">
+                    <div *ngFor="let omopMapping of entityMapping.omopMappings">
+                        <p>
+                            <span>Entity: </span><strong>{{omopMapping.entity.name}}</strong>
+                        </p>
+                        <p>
+                            <span>Mapping: </span><strong>{{omopMapping.mapping}}</strong>
+                        </p>
+                        <p>Attributes:</p>
+                        <p-table [value]="omopMapping.attributes">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Attribute</th>
+                                    <th>Fhir Path</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-attributeMap>
+                                <tr>
+                                    <td>
+                                        {{attributeMap.attribute.name}}
+                                    </td>
+                                    <td>
+                                        {{attributeMap.path}}
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="OMOP to FHIR Mapping">
+                <div *ngFor="let fhirMapping of resourceMap?.fhirMappings">
+                    <p>
+                        <span>Entity: </span><strong>{{fhirMapping.omopEntityName}}</strong>
+                    </p>
+                    <p>
+                        <span>Mapping: </span><strong>{{fhirMapping.mapping}}</strong>
+                    </p>
+                    <span>
+                        <ngx-json-viewer [json]="fhirMapping.map"></ngx-json-viewer>
+                    </span>
+                </div>
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+</div>
