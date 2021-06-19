@@ -1,1 +1,1 @@
-# OMOP-on-FHIR-mapping-ui
+# OMOP-on-FHIR-ui
