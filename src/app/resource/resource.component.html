@@ -10,7 +10,6 @@
     <div class="p-col-9">
         <h2>{{resourceName}}</h2>
 
-
         <p-tabView>
             <p-tabPanel header="FHIR to OMOP Mapping">
                 <div *ngFor="let entityMapping of resourceMap?.entities">
@@ -36,6 +35,23 @@
                                     </td>
                                     <td>
                                         {{attributeMap.path}}
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                    <div>
+                        <p>Constraints:</p>
+                        <p-table [value]="entityMapping.constraints">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Expression</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-contraint>
+                                <tr>
+                                    <td>
+                                        {{contraint.expression}}
                                     </td>
                                 </tr>
                             </ng-template>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
+import { expressionType } from '@angular/compiler/src/output/output_ast';
 
 @Injectable({providedIn: 'root'})
 export class SettingApi {
@@ -64,6 +65,10 @@ export interface ResourceMapping {
     fhirMappings: FhirMapping[];
 }
 
+export interface FhirConstraint {
+    expression: string;
+}
+
 export interface OmopAttribute {
     name: string;
     primaryKey: boolean;
@@ -89,6 +94,7 @@ export interface OmopMapping {
     entity: OmopEntity;
     mapping: string;
     attributes: AttributeMapping[];
+    constraints: FhirConstraint[];
 }
 
 export interface EntityMapping {
