@@ -12,20 +12,20 @@ export class SettingApi {
     }
 
     getSettings() : Observable<Settings> {
-        return this.http.get(`https://localhost:5001/api/server/settings`)
+        return this.http.get(`/api/server/settings`)
             .pipe(map(this.extractData))
             .pipe(catchError(this.handleError));
     }
 
     getResources() : Observable<ResourceStat[]> {
-        return this.http.get(`https://localhost:5001/api/server/resources`)
+        return this.http.get(`/api/server/resources`)
             .pipe(map(this.extractData))
             .pipe(catchError(this.handleError));
     }
 
     getMapping(resource: string): Observable<ResourceMapping> {
         console.log('getMapping(' + resource + ')');
-        return this.http.get(`https://localhost:5001/api/server/resource/${resource}/mapping`)
+        return this.http.get(`/api/server/resource/${resource}/mapping`)
             .pipe(map(this.extractData))
             .pipe(catchError(this.handleError));
     }
