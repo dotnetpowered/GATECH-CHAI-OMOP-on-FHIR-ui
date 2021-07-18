@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.settingApi.getResources().subscribe((resources)=>{
+      resources.sort((a,b) => (a.resourceName > b.resourceName) ? 1 : ((b.resourceName > a.resourceName) ? -1 : 0))
       this.resources = resources;
     });
 
